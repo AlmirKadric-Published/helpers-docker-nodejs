@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+    percona:
+        container_name: ${COMPOSE_PROJECT_NAME}-percona
+        image: percona:5.7
+
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+        restart: always
+
+        networks:
+            app_net:
+                ipv4_address: ${IP_RANGE}.3
+
+networks:
+    app_net:
+        driver: bridge
+
+        ipam:
+            driver: default
+            config:
+            - subnet: ${IP_RANGE}.0/24
+              gateway: ${IP_RANGE}.1

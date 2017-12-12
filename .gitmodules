@@ -1,0 +1,3 @@
+[submodule "sbin/docker-tuntap-osx"]
+	path = sbin/docker-tuntap-osx
+	url = https://github.com/AlmirKadric-Published/docker-tuntap-osx

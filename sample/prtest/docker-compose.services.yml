@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+    percona:
+        container_name: ${COMPOSE_PROJECT_NAME}-percona
+        image: percona:5.7
+
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+        restart: always

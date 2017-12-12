@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    app:
+        container_name: ${COMPOSE_PROJECT_NAME}
+        image: ${IMAGE_ID}
+
+        environment:
+            - NODE_ENV=${NODE_ENV}
+
+        links:
+            - percona

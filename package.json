@@ -1,0 +1,40 @@
+{
+  "name": "helpers-docker",
+  "description": "",
+  "version": "0.1.0",
+  "homepage": "https://github.com/AlmirKadric-Published/helpers-docker-nodejs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlmirKadric-Published/helpers-docker-nodejs.git"
+  },
+  "author": {
+    "name": "Almir Kadric",
+    "email": "github@almirkadric.com",
+    "url": "https://github.com/AlmirKadric"
+  },
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "bin": {
+    "docker-helper": "./bin/docker-helper.js",
+    "docker-osx-tap-install": "./bin/docker-osx-tap-install.js"
+  },
+  "scripts": {
+    "deps": "git submodule update --init --recursive",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:lint": "eslint .",
+    "test:unit": "mocha ./test",
+    "precommit": "npm run test"
+  },
+  "dependencies": {
+    "commander": "2.12.2",
+    "dockerode": "2.5.3",
+    "dotenv": "4.0.0",
+    "find-root": "1.1.0",
+    "net-ping": "1.2.1"
+  },
+  "devDependencies": {
+    "eslint": "4.13.0",
+    "husky": "0.14.3",
+    "mocha": "4.0.1"
+  }
+}
