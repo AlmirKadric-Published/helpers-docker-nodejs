@@ -14,10 +14,10 @@ the degree to which you use the available features as well as override them as y
 
 Features & Design
 -----------------
-One of the opinionated features of this set of this project is how the development environment is
-setup for docker.
+One of the opinionated features of this project is how the development environment is setup for
+docker.
 
-From our personal experience folder mounting and file watch/sync system have been and still are
+From our personal experience folder mounting and file watch/sync systems have been and still are
 quite flaky. Inherently this is just a problem of attention as these kind of systems just do not
 received the same love as something like a networking stack. For this reason we have chosen to avoid
 these kinds of systems for the bulk of our development, because lets face it, you should be
