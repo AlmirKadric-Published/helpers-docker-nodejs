@@ -3,12 +3,10 @@
 const path = require('path');
 const commander = require('commander');
 
-const pjson = require('../package.json');
-
 
 // Setup command line with the environment configuration path option to start with
 commander
-	.version(pjson.version)
+	.version(require('../package.json').version)
 	.option(
 		'-p, --path [value]',
 		'Path to environment configuration',
@@ -30,6 +28,11 @@ let HelperClass;
 try {
 	HelperClass = require(commander.path);
 } catch (error) {
+	// DO NOTHING
+}
+
+if (!HelperClass || !HelperClass.prototype || !HelperClass.prototype.run) {
+	console.log('No overload found, using base class');
 	HelperClass = require('../');
 }
 
