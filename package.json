@@ -16,7 +16,8 @@
   "main": "./lib/index.js",
   "bin": {
     "docker-helper": "./bin/docker-helper.js",
-    "docker-osx-tap-install": "./bin/docker-osx-tap-install.js"
+    "docker-osx-tap-install": "./bin/docker-osx-tap-install.js",
+    "docker-osx-tap-uninstall": "./bin/docker-osx-tap-uninstall.js"
   },
   "scripts": {
     "deps": "git submodule update --init --recursive",
@@ -26,11 +27,12 @@
     "precommit": "npm run test"
   },
   "dependencies": {
-    "commander": "2.12.2",
+    "commander": "2.20.0",
     "dockerode": "2.5.3",
-    "dotenv": "4.0.0",
+    "dotenv": "8.0.0",
     "find-root": "1.1.0",
-    "net-ping": "1.2.1"
+    "global-dirs": "1.0.0",
+    "net-ping": "1.2.3"
   },
   "devDependencies": {
     "eslint": "4.13.0",

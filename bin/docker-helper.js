@@ -1,21 +1,32 @@
 #!/usr/bin/env node
 
-const path = require('path');
 const commander = require('commander');
+const globalDirs = require('global-dirs');
+const path = require('path');
 
 
-// Setup command line with the environment configuration path option to start with
+// Add global paths to module resolution, this allows inheritting helpers to get easy
+// access without needing the global-dirs library or this logic
+module.paths.push(globalDirs.npm.packages);
+module.paths.push(globalDirs.yarn.packages);
+
+
+// Setup command line with the environment configuration path option as an entry point for overloading
 commander
 	.version(require('../package.json').version)
 	.option(
 		'-p, --path [value]',
-		'Path to environment configuration',
+		'path to environment configuration',
 		(value) => path.resolve(value),
 		process.cwd()
 	)
 	.option(
 		'--no-force-env-file',
-		'Disables the behaviour where .env file values are forced to override set environment variables'
+		'disables the behaviour where .env file values are forced to override set environment variables'
+	)
+	.option(
+		'-v, --verbose',
+		'print debug logs'
 	);
 
 
@@ -28,12 +39,15 @@ let HelperClass;
 try {
 	HelperClass = require(commander.path);
 } catch (error) {
-	// DO NOTHING
+	if (commander.verbose) {
+		console.error(error);
+	}
 }
 
 if (!HelperClass || !HelperClass.prototype || !HelperClass.prototype.run) {
-	console.log('No overload found, using base class');
-	HelperClass = require('../');
+	console.log('No overload found within, using base class');
+	console.log('');
+	HelperClass = require(path.resolve(__dirname, '../'));
 }
 
 

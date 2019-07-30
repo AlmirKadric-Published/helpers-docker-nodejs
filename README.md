@@ -45,6 +45,7 @@ can bundle the application into an image and further test within a pure docker s
    - sudo
    - ping
    - add/del route
+   - sleep
  - A healthy set of default cli commands
 
 
@@ -74,6 +75,11 @@ brew cask install tuntap
 To install docker-tuntap shim:
 ```
 npx docker-osx-tap-install
+```
+
+To uninstall docker-tuntap shim:
+```
+npx docker-osx-tap-uninstall
 ```
 
 

@@ -1,5 +1,12 @@
+// HACK: this ensure that global paths are included and checked when looking for modules
+// Docker helper injects them into the require paths for easy access
+module.paths.push(...module.parent.parent.paths.slice(-2));
+
+
+// Require base helper class
 const DockerHelper = require('helpers-docker');
 const docker = require('helpers-docker/lib/docker');
+const system = require('helpers-docker/lib/system');
 
 
 /**
@@ -30,19 +37,6 @@ class LocalHelper extends DockerHelper {
 
 
 	/**
-	 * Sleeps for n seconds before continuing
-	 *
-	 * @param seconds
-	 * @returns {Promise}
-	 */
-	sleep(seconds) {
-		return new Promise((resolve) => {
-			setTimeout(() => resolve(), seconds * 1000);
-		});
-	}
-
-
-	/**
 	 * Waits for MySQL server to be responsive to queries
 	 *
 	 * @param container
@@ -65,7 +59,7 @@ class LocalHelper extends DockerHelper {
 			}
 
 			// Otherwise wait a second and repeat
-			await this.sleep(1);
+			await system.sleep(1);
 		}
 
 		throw new Error('MySQL did not start');
